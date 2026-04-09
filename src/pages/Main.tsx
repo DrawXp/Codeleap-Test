@@ -349,7 +349,7 @@ export function Main() {
             </header>
 
 			  <form onSubmit={handleCreate} className="p-4 sm:p-6">
-              <h2 className="text-[22px] font-bold mb-6 text-white text-center text-balance mx-auto max-w-lg">
+			  <h2 className="text-[22px] font-extrabold mb-6 text-center text-balance mx-auto max-w-lg bg-gradient-to-r from-white to-[var(--color-primary)] bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(12,242,244,0.4)] tracking-wide">
                 Open your mind, let reality rewind, and leave your vibe in the comments below.
               </h2>
 
