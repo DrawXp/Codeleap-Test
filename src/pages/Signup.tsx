@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import type { RootState } from '../store/store';
 import { setUsername } from '../store/userSlice';
-import { signInWithPopup } from 'firebase/auth';
+import { signInWithPopup, onAuthStateChanged } from 'firebase/auth';
 import { auth, provider } from '../services/firebase';
 
 const GoogleIcon = () => (
@@ -24,6 +25,25 @@ export function Signup() {
   const [inputData, setInputData] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const username = useSelector((state: RootState) => state.user.username);
+
+  useEffect(() => {
+    // Redirect if Redux state has username
+    if (username) {
+      navigate('/main');
+    }
+
+    // Redirect if Firebase session persists
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const currentUsername = user.displayName || user.email?.split('@')[0] || 'Unknown User';
+        dispatch(setUsername(currentUsername));
+        navigate('/main');
+      }
+    });
+
+    return () => unsubscribe();
+  }, [username, navigate, dispatch]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
