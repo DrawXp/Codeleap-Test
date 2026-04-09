@@ -91,7 +91,6 @@ export function Main() {
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
   const [sortOption, setSortOption] = useState<'recent' | 'alphabetical' | 'likes'>('recent');
   
-  const [media, setMedia] = useState<File | null>(null);
   const [mediaPreview, setMediaPreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -157,13 +156,11 @@ export function Main() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
-      setMedia(file);
       setMediaPreview(URL.createObjectURL(file));
     }
   };
 
   const removeMedia = () => {
-    setMedia(null);
     setMediaPreview(null);
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
