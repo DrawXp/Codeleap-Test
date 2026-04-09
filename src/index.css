@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0cf2f4;
+  --color-primary-shade: #08a9ab;
+}
+
+@layer base {
+  :root {
+    --primary: #0cf2f4;
+    --primary-tint: #3df5f6;
+    --primary-shade: #08a9ab;
+    --secondary: #00f797;
+    --secondary-tint: #33f9ac;
+    --secondary-shade: #00c679;
+    --secondary-shade2: #009a66;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    color: #f9fafb;
+    background:
+      radial-gradient(circle at 0 0, #044b6b 0, #020617 55%),
+      radial-gradient(circle at 100% 100%, #024040 0, #020617 50%);
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  .text-outline {
+    -webkit-text-stroke: 0.0156rem white;
+    text-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.6);
+  }
+
+  .glass-panel {
+    @apply bg-slate-900/60 backdrop-blur-md border border-white/20 rounded-2xl;
+    box-shadow: 0 0 15px rgba(12, 242, 244, 0.05);
+  }
+  
+  .glass-input {
+    @apply w-full bg-slate-800/50 border border-white/20 rounded-lg p-2 text-neutral-100 placeholder-gray-400 focus:outline-none transition-all;
+  }
+
+  .glass-input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 10px rgba(12, 242, 244, 0.3);
+  }
+
+  .btn-primary {
+    @apply bg-[var(--color-primary)] text-neutral-900 font-bold py-2 px-8 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary:not(:disabled):hover {
+    filter: brightness(1.1);
+    box-shadow: 0 0 15px rgba(12, 242, 244, 0.4);
+  }
+}
