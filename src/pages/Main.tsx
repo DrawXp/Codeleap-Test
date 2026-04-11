@@ -612,7 +612,7 @@ export function Main() {
                   id="ai-theme"
                   value={aiTheme}
                   onChange={(e) => setAiTheme(e.target.value)}
-                  placeholder="Ex: Cooking a dinner; Ride a Horse"
+                  placeholder="Ex: Cooking a dinner; Riding a Horse"
                   className="glass-input"
                   disabled={isAiLoading}
                 />
