@@ -46,7 +46,6 @@
 
   .glass-input:focus {
     border-color: var(--color-primary);
-    /* 10px / 16px */
     box-shadow: 0 0 0.625rem rgba(12, 242, 244, 0.3);
   }
 

@@ -9,6 +9,8 @@ import { MdDeleteForever, MdEdit, MdLogout, MdImage, MdClose, MdComment, MdPsych
 import { AiOutlineLike } from 'react-icons/ai';
 import toast, { Toaster } from 'react-hot-toast';
 import { createClient } from '@supabase/supabase-js';
+import { signOut } from 'firebase/auth';
+import { auth } from '../services/firebase';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -243,9 +245,14 @@ export function Main() {
     }
   };
 
-	const handleLogout = () => {
-		dispatch(logout());
-	  };
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      dispatch(logout());
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+  };
 
 	const handleAiSuggestion = async () => {
 		if (!aiTheme.trim()) return;

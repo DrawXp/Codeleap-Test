@@ -28,12 +28,10 @@ export function Signup() {
   const username = useSelector((state: RootState) => state.user.username);
 
   useEffect(() => {
-    // Redirect if Redux state has username
     if (username) {
       navigate('/main');
     }
 
-    // Redirect if Firebase session persists
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const currentUsername = user.displayName || user.email?.split('@')[0] || 'Unknown User';
@@ -56,8 +54,9 @@ export function Signup() {
   const handleGoogleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
-      const username = result.user.displayName || result.user.email?.split('@')[0] || 'Unknown User';
-      dispatch(setUsername(username));
+      // Resolved variable shadowing
+      const googleUsername = result.user.displayName || result.user.email?.split('@')[0] || 'Unknown User';
+      dispatch(setUsername(googleUsername));
       navigate('/main');
     } catch (error) {
       console.error(error);
@@ -66,11 +65,11 @@ export function Signup() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
-      <div className="glass-panel p-8 w-full max-w-[500px]">
-		<h1 className="text-[22px] font-bold mb-6 text-white tracking-wide text-center">Welcome!</h1>
+      <div className="glass-panel p-8 w-full max-w-[31.25rem]">
+        <h1 className="text-[1.375rem] font-bold mb-6 text-white tracking-wide text-center">Welcome!</h1>
         
         <form onSubmit={handleSubmit} className="flex flex-col mb-4">
-          <label htmlFor="username" className="text-[16px] mb-2 text-gray-300">
+          <label htmlFor="username" className="text-[1rem] mb-2 text-gray-300">
             Please enter your username
           </label>
           
