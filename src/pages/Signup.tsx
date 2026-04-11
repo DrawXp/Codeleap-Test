@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import type { RootState } from '../store/store';
-import { setUsername } from '../store/userSlice';
+import { useUser } from '../contexts/UserContext';
 import { signInWithPopup, onAuthStateChanged } from 'firebase/auth';
 import { auth, provider } from '../services/firebase';
 
@@ -24,29 +22,29 @@ const GoogleIcon = () => (
 export function Signup() {
   const [inputData, setInputData] = useState('');
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const username = useSelector((state: RootState) => state.user.username);
+  const { username, setUsername } = useUser();
 
   useEffect(() => {
     if (username) {
       navigate('/main');
+      return;
     }
 
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const currentUsername = user.displayName || user.email?.split('@')[0] || 'Unknown User';
-        dispatch(setUsername(currentUsername));
+        setUsername(currentUsername);
         navigate('/main');
       }
     });
 
     return () => unsubscribe();
-  }, [username, navigate, dispatch]);
+  }, [username, navigate, setUsername]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (inputData.trim()) {
-      dispatch(setUsername(inputData.trim()));
+      setUsername(inputData.trim());
       navigate('/main');
     }
   };
@@ -54,9 +52,8 @@ export function Signup() {
   const handleGoogleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
-      // Resolved variable shadowing
       const googleUsername = result.user.displayName || result.user.email?.split('@')[0] || 'Unknown User';
-      dispatch(setUsername(googleUsername));
+      setUsername(googleUsername);
       navigate('/main');
     } catch (error) {
       console.error(error);
