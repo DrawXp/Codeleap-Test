@@ -378,7 +378,7 @@ return (
                   id="content"
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
-                  placeholder="Let your heart speak on this box"
+                  placeholder="Pour your heart out here"
                   rows={3}
                   className="glass-input resize-none"
                 />
