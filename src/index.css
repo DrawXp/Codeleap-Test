@@ -37,7 +37,7 @@
 
   .glass-panel {
     @apply bg-slate-900/60 backdrop-blur-md border border-white/20 rounded-2xl;
-    box-shadow: 0 0 15px rgba(12, 242, 244, 0.05);
+    box-shadow: 0 0 0.9375rem rgba(12, 242, 244, 0.05);
   }
   
   .glass-input {
@@ -46,7 +46,8 @@
 
   .glass-input:focus {
     border-color: var(--color-primary);
-    box-shadow: 0 0 10px rgba(12, 242, 244, 0.3);
+    /* 10px / 16px */
+    box-shadow: 0 0 0.625rem rgba(12, 242, 244, 0.3);
   }
 
   .btn-primary {
@@ -55,6 +56,6 @@
 
   .btn-primary:not(:disabled):hover {
     filter: brightness(1.1);
-    box-shadow: 0 0 15px rgba(12, 242, 244, 0.4);
+    box-shadow: 0 0 0.9375rem rgba(12, 242, 244, 0.4);
   }
 }

@@ -335,26 +335,26 @@ export function Main() {
     return result;
   }, [posts, debouncedSearchTerm, sortOption, localLikes]);
 
-  return (
+return (
     <div className="min-h-screen flex justify-center py-8 px-4">
       <Toaster />
-      <div className="w-full max-w-[800px] relative">
-<main>
+      <div className="w-full max-w-[50rem] relative">
+        <main>
           <div className="glass-panel mb-6">
             <header className="p-6 flex justify-between items-center border-b border-white/20">
-              <h1 className="text-[32px] font-extrabold tracking-wide text-outline bg-gradient-to-r from-[var(--primary)] via-[var(--secondary)] to-[var(--primary-tint)] bg-clip-text text-transparent">CodeLeap</h1>
+              <h1 className="text-[2rem] font-extrabold tracking-wide text-outline bg-gradient-to-r from-[var(--primary)] via-[var(--secondary)] to-[var(--primary-tint)] bg-clip-text text-transparent">CodeLeap</h1>
               <button onClick={handleLogout} className="text-gray-300 hover:text-[var(--color-primary)] transition-colors" title="Logout">
                 <MdLogout size={24} />
               </button>
             </header>
 
-			  <form onSubmit={handleCreate} className="p-4 sm:p-6">
-			  <h2 className="text-[22px] font-extrabold mb-6 text-center text-balance mx-auto max-w-lg bg-gradient-to-r from-white to-[var(--color-primary)] bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(12,242,244,0.4)] tracking-wide">
+              <form onSubmit={handleCreate} className="p-4 sm:p-6">
+              <h2 className="text-[1.375rem] font-extrabold mb-6 text-center text-balance mx-auto max-w-lg bg-gradient-to-r from-white to-[var(--color-primary)] bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(12,242,244,0.4)] tracking-wide">
                 Open your mind, let reality rewind, and leave your vibe in the comments below.
               </h2>
 
               <div className="flex flex-col mb-4">
-                <label htmlFor="title" className="text-[16px] mb-2 text-gray-300">Title</label>
+                <label htmlFor="title" className="text-[1rem] mb-2 text-gray-300">Title</label>
                 <input
                   type="text"
                   id="title"
@@ -366,7 +366,7 @@ export function Main() {
               </div>
 
               <div className="flex flex-col mb-6">
-                <label htmlFor="content" className="text-[16px] mb-2 text-gray-300">Content</label>
+                <label htmlFor="content" className="text-[1rem] mb-2 text-gray-300">Content</label>
                 <textarea
                   id="content"
                   value={content}
@@ -378,7 +378,7 @@ export function Main() {
               </div>
 
               <div className="flex flex-col gap-4">
-				{mediaPreview && (
+                {mediaPreview && (
                   <div className="relative w-max mt-2">
                     <img src={mediaPreview} alt="Preview" className="h-32 rounded-lg object-cover border border-white/20" />
                     <button
@@ -450,9 +450,9 @@ export function Main() {
 
           <div className="flex flex-col gap-6">
             {processedPosts.map((post) => (
-			  <div key={post.id} className="glass-panel overflow-hidden transition-all duration-300 hover:shadow-[0_0_20px_rgba(12,242,244,0.15)] hover:-translate-y-1">
+              <div key={post.id} className="glass-panel overflow-hidden transition-all duration-300 hover:shadow-[0_0_20px_rgba(12,242,244,0.15)] hover:-translate-y-1">
                 <div className="bg-slate-800/60 text-white p-4 sm:p-6 flex justify-between items-center border-b border-white/10">
-                  <h3 className="text-[22px] font-bold break-words w-4/5 text-white">{post.title}</h3>
+                  <h3 className="text-[1.375rem] font-bold break-words w-4/5 text-white">{post.title}</h3>
                   {post.username === username && (
                     <div className="flex gap-4">
                       <button onClick={() => setDeleteModal({ isOpen: true, postId: post.id })} className="text-gray-400 hover:text-[#FF5151] hover:scale-110 transition-all">
@@ -476,7 +476,7 @@ export function Main() {
                       <img 
                         src={localImages[post.id]} 
                         alt="Post attachment" 
-                        className="w-full max-h-[400px] object-cover rounded-lg border border-white/10 shadow-inner" 
+                        className="w-full max-h-[25rem] object-cover rounded-lg border border-white/10 shadow-inner" 
                       />
                     </div>
                   )}
@@ -532,8 +532,8 @@ export function Main() {
 
         {deleteModal.isOpen && (
           <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex justify-center items-center z-50 px-4">
-            <div className="glass-panel p-6 rounded-lg w-full max-w-[660px] border border-white/30 shadow-[0_0_30px_rgba(0,0,0,0.8)]">
-              <h2 className="text-[22px] font-bold mb-10 text-white">Are you sure you want to delete this item?</h2>
+            <div className="glass-panel p-6 rounded-lg w-full max-w-[41.25rem] border border-white/30 shadow-[0_0_30px_rgba(0,0,0,0.8)]">
+              <h2 className="text-[1.375rem] font-bold mb-10 text-white">Are you sure you want to delete this item?</h2>
               <div className="flex justify-end gap-4">
                 <button
                   onClick={() => setDeleteModal({ isOpen: false, postId: null })}
@@ -554,11 +554,11 @@ export function Main() {
 
         {editModal.isOpen && (
           <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex justify-center items-center z-50 px-4">
-            <div className="glass-panel p-6 rounded-lg w-full max-w-[660px] border border-white/30 shadow-[0_0_30px_rgba(0,0,0,0.8)]">
-              <h2 className="text-[22px] font-bold mb-6 text-white">Edit item</h2>
+            <div className="glass-panel p-6 rounded-lg w-full max-w-[41.25rem] border border-white/30 shadow-[0_0_30px_rgba(0,0,0,0.8)]">
+              <h2 className="text-[1.375rem] font-bold mb-6 text-white">Edit item</h2>
               
-			  <div className="flex flex-col mb-4">
-                <label htmlFor="title" className="text-[16px] font-semibold mb-2 text-gray-300">Title</label>
+              <div className="flex flex-col mb-4">
+                <label htmlFor="title" className="text-[1rem] font-semibold mb-2 text-gray-300">Title</label>
                 <input
                   type="text"
                   id="title"
@@ -570,7 +570,7 @@ export function Main() {
               </div>
 
               <div className="flex flex-col mb-6">
-                <label htmlFor="content" className="text-[16px] font-semibold mb-2 text-gray-300">Content</label>
+                <label htmlFor="content" className="text-[1rem] font-semibold mb-2 text-gray-300">Content</label>
                 <textarea
                   id="content"
                   value={content}
@@ -588,7 +588,7 @@ export function Main() {
                 >
                   Cancel
                 </button>
-<button
+                <button
                   onClick={handleEdit}
                   disabled={!editModal.title.trim() || !editModal.content.trim()}
                   className="bg-[#47B960] text-white font-bold py-2 px-8 rounded-[8px] transition-all hover:bg-[#3da353] hover:shadow-[0_0_10px_rgba(71,185,96,0.4)] disabled:opacity-50 disabled:hover:shadow-none"
@@ -602,11 +602,11 @@ export function Main() {
 
         {isAiModalOpen && (
           <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex justify-center items-center z-50 px-4">
-            <div className="glass-panel p-6 rounded-lg w-full max-w-[500px] border border-white/30 shadow-[0_0_30px_rgba(0,0,0,0.8)]">
-              <h2 className="text-[22px] font-bold mb-6 text-white">AI Post Generation</h2>
+            <div className="glass-panel p-6 rounded-lg w-full max-w-[31.25rem] border border-white/30 shadow-[0_0_30px_rgba(0,0,0,0.8)]">
+              <h2 className="text-[1.375rem] font-bold mb-6 text-white">AI Post Generation</h2>
               
               <div className="flex flex-col mb-6">
-                <label htmlFor="ai-theme" className="text-[16px] mb-2 text-gray-300">Theme</label>
+                <label htmlFor="ai-theme" className="text-[1rem] mb-2 text-gray-300">Theme</label>
                 <input
                   type="text"
                   id="ai-theme"
