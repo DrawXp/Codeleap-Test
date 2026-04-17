@@ -31,12 +31,10 @@ export function Modal({
         {children}
 
         <div className="flex justify-end gap-4 mt-6">
-			<button
+          <button
             onClick={onClose}
             className="bg-transparent border border-gray-400 text-gray-200 font-bold py-2 px-8 rounded-[8px] hover:bg-white/10 transition-colors"
           >
-            Cancel
-          </button>
             Cancel
           </button>
           <button
