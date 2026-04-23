@@ -95,28 +95,52 @@ export function CreatePostForm({ username, onPostCreated }: CreatePostFormProps)
           Open your mind, let reality rewind, and leave your vibe in the comments below.
         </h2>
 
-        <div className="flex flex-col mb-4">
-          <label htmlFor="title" className="text-[1rem] mb-2 text-gray-300">Title</label>
+        <div className="flex flex-col gap-3 w-full mb-6">
           <input
             type="text"
             id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="Open you mind"
-            className="glass-input"
+            placeholder="Open your mind"
+            className="w-full bg-slate-900/50 border border-slate-700 rounded-full px-4 py-2 text-sm text-white focus:outline-none focus:border-teal-500 transition-colors"
           />
-        </div>
-
-        <div className="flex flex-col mb-6">
-          <label htmlFor="content" className="text-[1rem] mb-2 text-gray-300">Content</label>
-          <textarea
-            id="content"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            placeholder="Pour your heart out here"
-            rows={3}
-            className="glass-input resize-none"
-          />
+          
+          <div className="relative flex items-center w-full">
+            <textarea
+              id="content"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              placeholder="Pour your heart out here"
+              rows={3}
+              className="w-full bg-slate-900/50 border border-slate-700 rounded-2xl pl-4 pr-24 py-3 text-base text-white focus:outline-none focus:border-teal-500 transition-colors resize-none"
+            />
+            
+            <div className="absolute right-3 flex items-center gap-2 text-gray-400">
+              <input
+                type="file"
+                accept="image/*"
+                ref={fileInputRef}
+                onChange={handleFileChange}
+                className="hidden"
+              />
+              <button 
+                type="button" 
+                onClick={() => fileInputRef.current?.click()}
+                className="hover:text-white transition-colors p-1"
+                title="Add Image"
+              >
+                <MdImage size={20} />
+              </button>
+              <button 
+                type="button" 
+                onClick={() => setIsAiModalOpen(true)}
+                className="hover:text-white transition-colors p-1"
+                title="AI Suggestion"
+              >
+                <MdPsychology size={20} />
+              </button>
+            </div>
+          </div>
         </div>
 
         <div className="flex flex-col gap-4">
@@ -133,36 +157,11 @@ export function CreatePostForm({ username, onPostCreated }: CreatePostFormProps)
             </div>
           )}
           
-          <div className="flex justify-between items-center mt-2">
-            <input
-              type="file"
-              accept="image/*"
-              ref={fileInputRef}
-              onChange={handleFileChange}
-              className="hidden"
-            />
-            <button
-              type="button"
-              onClick={() => fileInputRef.current?.click()}
-              className="flex items-center gap-2 text-white hover:brightness-125 transition-all"
-            >
-              <MdImage size={24} />
-              <span className="font-bold">Add Image</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setIsAiModalOpen(true)}
-              className="flex items-center gap-2 text-white hover:brightness-125 transition-all mr-auto ml-4"
-            >
-              <MdPsychology size={24} />
-              <span className="font-bold">AI Suggestion</span>
-            </button>
-
+          <div className="flex justify-end mt-1">
             <button
               type="submit"
               disabled={!title.trim() || !content.trim() || isCreating}
-              className="btn-primary flex items-center justify-center min-w-[100px]"
+              className="bg-[#0D9488] hover:bg-teal-600 text-white px-6 py-2 rounded-full text-sm font-semibold transition-colors disabled:opacity-50"
             >
               {isCreating ? '...' : 'Create'}
             </button>
