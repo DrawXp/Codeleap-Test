@@ -53,8 +53,8 @@ export function PostItem({
         )}
       </div>
       <div className="p-4 sm:p-6">
-        <div className="flex justify-between text-gray-400 mb-4 text-sm sm:text-base">
-          <span className="font-bold text-[var(--color-primary)]">@{post.username}</span>
+        <div className="flex justify-between text-gray-400 mb-4 text-xs sm:text-sm">
+          <span className="font-semibold text-[var(--color-primary)]">@{post.username}</span>
           <span>{formatDistanceToNow(new Date(post.created_datetime))} ago</span>
         </div>
         <p className="text-gray-100 break-words whitespace-pre-wrap mb-4 leading-relaxed">{post.content}</p>
@@ -93,21 +93,23 @@ export function PostItem({
             ))}
           </div>
           
-          <div className="flex gap-2 items-center">
-            <input
-              type="text"
-              placeholder="Write a comment..."
-              value={commentInput}
-              onChange={(e) => onCommentChange(post.id, e.target.value)}
-              className="glass-input text-sm py-2 px-3 flex-grow"
-            />
-            <button
-              onClick={() => onCommentSubmit(post.id)}
-              disabled={!commentInput?.trim()}
-              className="btn-primary py-2 px-4 text-sm whitespace-nowrap"
-            >
-              Post
-            </button>
+          <div className="flex justify-center w-full pt-2">
+            <div className="flex items-center gap-3 w-full max-w-lg">
+              <input
+                type="text"
+                placeholder="Write a comment..."
+                value={commentInput}
+                onChange={(e) => onCommentChange(post.id, e.target.value)}
+                className="flex-1 bg-slate-900/50 border border-slate-700 rounded-full px-4 py-2 text-sm text-white focus:outline-none focus:border-teal-500 transition-colors"
+              />
+              <button
+                onClick={() => onCommentSubmit(post.id)}
+                disabled={!commentInput?.trim()}
+                className="bg-[#0D9488] hover:brightness-125 text-white px-6 py-2 rounded-full text-sm font-semibold transition-all disabled:opacity-50 whitespace-nowrap"
+              >
+                Post
+              </button>
+            </div>
           </div>
         </div>
       </div>

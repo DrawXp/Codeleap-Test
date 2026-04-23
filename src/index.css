@@ -27,6 +27,10 @@
       radial-gradient(circle at 100% 100%, #024040 0, #020617 50%);
     background-attachment: fixed;
   }
+
+  button {
+    @apply cursor-pointer;
+  }
 }
 
 @layer components {

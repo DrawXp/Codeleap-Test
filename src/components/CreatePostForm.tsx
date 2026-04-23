@@ -90,32 +90,32 @@ export function CreatePostForm({ username, onPostCreated }: CreatePostFormProps)
 
   return (
     <>
-      <form onSubmit={handleCreate} className="p-4 sm:p-6">
-        <h2 className="text-[1.375rem] font-extrabold mb-6 text-center text-balance mx-auto max-w-lg bg-gradient-to-r from-white to-[var(--color-primary)] bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(12,242,244,0.4)] tracking-wide">
+      <form onSubmit={handleCreate} className="p-4 sm:p-6 flex flex-col items-center">
+        <h2 className="text-[1.375rem] font-extrabold mb-8 text-center text-balance mx-auto max-w-lg bg-gradient-to-r from-white to-[var(--color-primary)] bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(12,242,244,0.4)] tracking-wide">
           Open your mind, let reality rewind, and leave your vibe in the comments below.
         </h2>
 
-        <div className="flex flex-col gap-3 w-full mb-6">
+        <div className="flex flex-col gap-3 w-full max-w-md">
           <input
             type="text"
             id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Open your mind"
-            className="w-full bg-slate-900/50 border border-slate-700 rounded-full px-4 py-2 text-sm text-white focus:outline-none focus:border-teal-500 transition-colors"
+            className="w-full bg-slate-900/50 border border-slate-700 rounded-full px-4 py-1.5 text-sm text-white focus:outline-none focus:border-teal-500 transition-colors"
           />
           
-          <div className="relative flex items-center w-full">
+          <div className="relative w-full">
             <textarea
               id="content"
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder="Pour your heart out here"
               rows={3}
-              className="w-full bg-slate-900/50 border border-slate-700 rounded-2xl pl-4 pr-24 py-3 text-base text-white focus:outline-none focus:border-teal-500 transition-colors resize-none"
+              className="w-full bg-slate-900/50 border border-slate-700 rounded-2xl pl-4 pr-16 pt-3 pb-8 text-sm text-white focus:outline-none focus:border-teal-500 transition-colors resize-none"
             />
             
-            <div className="absolute right-3 flex items-center gap-2 text-gray-400">
+            <div className="absolute right-2 bottom-2 flex items-center gap-0.5 text-gray-400">
               <input
                 type="file"
                 accept="image/*"
@@ -129,7 +129,7 @@ export function CreatePostForm({ username, onPostCreated }: CreatePostFormProps)
                 className="hover:text-white transition-colors p-1"
                 title="Add Image"
               >
-                <MdImage size={20} />
+                <MdImage size={18} />
               </button>
               <button 
                 type="button" 
@@ -137,33 +137,31 @@ export function CreatePostForm({ username, onPostCreated }: CreatePostFormProps)
                 className="hover:text-white transition-colors p-1"
                 title="AI Suggestion"
               >
-                <MdPsychology size={20} />
+                <MdPsychology size={18} />
               </button>
             </div>
           </div>
-        </div>
 
-        <div className="flex flex-col gap-4">
           {mediaPreview && (
-            <div className="relative w-max mt-2">
-              <img src={mediaPreview} alt="Preview" className="h-32 rounded-lg object-cover border border-white/20" />
+            <div className="relative w-max self-start">
+              <img src={mediaPreview} alt="Preview" className="h-20 rounded-lg object-cover border border-white/20" />
               <button
                 type="button"
                 onClick={removeMedia}
-                className="absolute -top-2 -right-2 bg-[#FF5151] text-white rounded-full p-1 hover:bg-red-600 transition-colors shadow-lg"
+                className="absolute -top-2 -right-2 bg-[#FF5151] text-white rounded-full p-0.5 hover:bg-red-600 transition-colors shadow-lg"
               >
-                <MdClose size={16} />
+                <MdClose size={14} />
               </button>
             </div>
           )}
-          
-          <div className="flex justify-end mt-1">
+
+          <div className="flex justify-center mt-2">
             <button
               type="submit"
               disabled={!title.trim() || !content.trim() || isCreating}
-              className="bg-[#0D9488] hover:brightness-125 text-white px-6 py-2 rounded-full text-sm font-semibold transition-all disabled:opacity-50"
+              className="bg-[#0D9488] hover:brightness-125 text-white px-8 py-2 rounded-full text-sm font-semibold transition-all disabled:opacity-50"
             >
-              {isCreating ? '...' : 'Create'}
+              {isCreating ? '...' : 'Submit'}
             </button>
           </div>
         </div>
