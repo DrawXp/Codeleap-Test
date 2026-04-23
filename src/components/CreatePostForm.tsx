@@ -161,7 +161,7 @@ export function CreatePostForm({ username, onPostCreated }: CreatePostFormProps)
             <button
               type="submit"
               disabled={!title.trim() || !content.trim() || isCreating}
-              className="bg-[#0D9488] hover:bg-teal-600 text-white px-6 py-2 rounded-full text-sm font-semibold transition-colors disabled:opacity-50"
+              className="bg-[#0D9488] hover:brightness-125 text-white px-6 py-2 rounded-full text-sm font-semibold transition-all disabled:opacity-50"
             >
               {isCreating ? '...' : 'Create'}
             </button>
